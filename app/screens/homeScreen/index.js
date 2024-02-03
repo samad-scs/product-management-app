@@ -1,13 +1,17 @@
 import React from 'react';
-import {TouchableOpacity, TouchableOpacityComponent, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 
 import {Header, Screen, Text} from '../../components';
 import {IcProfile, IcRightArrow, size} from '../../theme';
 import * as styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
-export default HomePage = () => {
+export default function HomePage() {
+  const navigation = useNavigation();
 
-  console.log('HOME PAGE');
+  const handleGenerate = () => {
+    navigation.navigate('generateBill');
+  };
 
   return (
     <View style={styles.rootContainer()}>
@@ -24,12 +28,7 @@ export default HomePage = () => {
       />
       <Screen style={styles.itemContainer()}>
         <View>
-          <TouchableOpacity
-            onPress={() => {
-              console.log('HERE');
-            }}
-            style={styles.productCard}
-            >
+          <TouchableOpacity onPress={handleGenerate} style={styles.productCard}>
             <View style={styles?.productCardContent}>
               <Text style={styles?.recentProduct}>Generate Bill</Text>
               <View style={{marginRight: size.moderateScale(10)}}>
@@ -45,4 +44,4 @@ export default HomePage = () => {
       </Screen>
     </View>
   );
-};
+}
