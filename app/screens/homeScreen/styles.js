@@ -1,15 +1,32 @@
 import {color, fontSize, fonts, size} from '../../theme';
 
-export const rootContainer = () => ({
+export const rootContainer = {
   flex: 1,
   backgroundColor: color.white,
-});
+};
 
-export const itemContainer = () => ({
+export const itemContainer = {
   marginHorizontal: size.moderateScale(10),
   paddingHorizontal: size.moderateScale(12),
   paddingTop: size.moderateScale(20),
-});
+  gap: size.moderateScale(30),
+};
+
+export const productIconButton = {
+  borderWidth: 1,
+  borderColor: color.gray100,
+  backgroundColor: color.whiteSmoke,
+  borderRadius: 30,
+  padding: 2,
+  shadowColor: '#171717aa',
+  shadowOffset: {
+    width: size.moderateScale(1),
+    height: size.moderateScale(1),
+  },
+  shadowOpacity: size.moderateScale(0.01),
+  shadowRadius: size.moderateScale(0.5),
+  elevation: size.moderateScale(5),
+};
 
 export const productCard = {
   backgroundColor: 'white',
