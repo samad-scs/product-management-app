@@ -1,6 +1,6 @@
 import {color, fontSize, fonts, size} from '../../../theme';
 
-export const productCardMainContainer = {
+export const recentBillingCardMainContainer = {
   backgroundColor: color.white,
   borderWidth: size.moderateScale(0),
   borderRadius: size.moderateScale(15),
@@ -17,33 +17,33 @@ export const productCardMainContainer = {
   overflow: 'hidden',
 };
 
-export const productsCardContentHeading = {
+export const recentBillingCardContentHeading = {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'flex-start',
   gap: size.moderateScale(10),
 };
 
-export const productDetailContainer = {
+export const recentBillingDetailContainer = {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
   position: 'relative',
 };
 
-export const productCardHeadingText = {
+export const recentBillingCardHeadingText = {
   color: color.black,
   fontSize: fontSize.middleMedium,
   fontFamily: fonts.openSansSemiBold,
 };
 
-export const productNameText = {
+export const recentBillingNameText = {
   color: color.black,
   fontSize: fontSize.littleMedium,
   fontFamily: fonts.openSansSemiBold,
 };
 
-export const productPriceText = {
+export const recentBillingPriceText = {
   color: color.semiTransBlack,
   fontSize: fontSize.littleMedium,
   fontFamily: fonts.openSansSemiBold,
@@ -94,4 +94,11 @@ export const viewMoreContainer = {
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
+};
+
+
+export const viewMoreText = {
+  color: color.black,
+  fontSize: fontSize.littleMedium,
+  fontFamily: fonts.openSansSemi,
 };
