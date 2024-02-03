@@ -1,0 +1,45 @@
+[
+  {
+    "bill_id": "BLL1000001",
+    "items": [
+      {
+        "product_id": "PRD1000001",
+        "qty": 4
+      }
+    ],
+    "created_at": "2024-02-03T20:52:26.378Z",
+    "totalPrice": 300,
+    "payment_status": "done",
+    "payment_via": "upi"
+  },
+  {
+    "bill_id": "BLL1000002",
+    "items": [
+      {
+        "product_id": "PRD1000004",
+        "qty": 2
+      }
+    ],
+    "created_at": "2024-01-30T20:52:26.378Z",
+    "totalPrice": 125,
+    "payment_status": "pending",
+    "payment_via": null
+  },
+  {
+    "bill_id": "BLL1000003",
+    "items": [
+      {
+        "product_id": "PRD1000001",
+        "qty": 8
+      },
+      {
+        "product_id": "PRD1000004",
+        "qty": 2
+      }
+    ],
+    "created_at": "2024-01-03T20:52:26.378Z",
+    "totalPrice": 725,
+    "payment_status": "done",
+    "payment_via": "cash"
+  }
+]

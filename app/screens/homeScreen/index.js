@@ -7,9 +7,12 @@ import ProductCard from '../../components/cards/productCard';
 import {IcProductCart, color, size} from '../../theme';
 import * as styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import BillCard from '../../components/cards/billCard';
 
 export default function HomePage() {
   const navigation = useNavigation();
+
+  console.log(new Date());
 
   return (
     <View style={styles.rootContainer}>
@@ -34,6 +37,7 @@ export default function HomePage() {
       <Screen style={styles.itemContainer}>
         {/* GENERATE BILL BUTTON */}
         <GenerateBillButton />
+        <BillCard />
         <ProductCard />
       </Screen>
     </View>

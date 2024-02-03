@@ -6,25 +6,26 @@ import products from '../../../json/products.json';
 import {IcFlame, color, size} from '../../../theme';
 import * as styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {currencyConvert} from '../../../utils/functions/currencyConverter';
 
 export default function ProductCard() {
   // ** Hooks
   const navigation = useNavigation();
 
   // ** States
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
     const sortProducts = setTimeout(() => {
-      // const newProducts = [...products];
-      // newProducts.sort((a, b) => b.sales - a.sales);
-      // const topThreeProducts = newProducts.slice(0, 3);
-      // setProductsData(topThreeProducts);
-      // setIsLoading(false);
-      // return () => {
-      //   clearTimeout(sortProducts);
-      // };
+      const newProducts = [...products];
+      newProducts.sort((a, b) => b.sales - a.sales);
+      const topThreeProducts = newProducts.slice(0, 3);
+      setProductsData(topThreeProducts);
+      setIsLoading(false);
+      return () => {
+        clearTimeout(sortProducts);
+      };
     }, 1000);
   }, []);
 
@@ -57,7 +58,7 @@ export default function ProductCard() {
           )}
         </View>
       ))}
-      {!isLoading && productsData?.length === 0 && (
+      {!isLoading && productsData?.length === 0 ? (
         <View style={styles.noProductsContainer}>
           <Text style={styles?.noProductsText}>No Products Found</Text>
           <TouchableOpacity
@@ -65,6 +66,14 @@ export default function ProductCard() {
             activeOpacity={0.8}
             onPress={() => navigation.navigate('addProduct')}>
             <Text style={styles?.addNowButtonText}>Add Now</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.viewMoreContainer}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate('productsList')}>
+            <Text style={styles.productNameText}>View More</Text>
           </TouchableOpacity>
         </View>
       )}

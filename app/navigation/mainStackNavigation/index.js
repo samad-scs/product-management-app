@@ -5,6 +5,7 @@ import HomePage from '../../screens/homeScreen';
 import BillingScreen from '../../screens/billingScreen';
 import AddUpdateProduct from '../../screens/addUpdateProductScreen';
 import ProductsScreen from '../../screens/productsScreen';
+import RecentBillings from '../../screens/recentBillings';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export const MainStackNavigation = () => {
         {/* <Stack.Screen name="demoScreen" component={DemoScreen} /> */}
         <Stack.Screen name="homePage" component={HomePage} />
         <Stack.Screen name="generateBill" component={BillingScreen} />
+        <Stack.Screen name="recentBillings" component={RecentBillings} />
         <Stack.Screen name="productsList" component={ProductsScreen} />
         <Stack.Screen name="addProduct" component={AddUpdateProduct} />
       </Stack.Navigator>

@@ -34,11 +34,13 @@ import {Minus} from './image/svgIcons/IcMinus';
 import {Trash} from './image/svgIcons/IcTrash';
 import {Settings} from './image/svgIcons/IcSettings';
 import {Flame} from './image/svgIcons/IcFlame';
-import { ProductCart } from './image/svgIcons/IcProduct';
+import {ProductCart} from './image/svgIcons/IcProduct';
+import {Bills} from './image/svgIcons/IcBills';
 
 export const IcInfo = props => <Info {...props} />;
 export const IcFlame = props => <Flame {...props} />;
 export const IcProductCart = props => <ProductCart {...props} />;
+export const IcBills = props => <Bills {...props} />;
 export const IcEyeClose = props => <EyeClose {...props} />;
 export const IcEyeOpen = props => <EyeOpen {...props} />;
 export const IcForwardArrow = props => <ForwardArrow {...props} />;
