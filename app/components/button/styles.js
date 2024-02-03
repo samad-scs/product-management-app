@@ -1,5 +1,4 @@
-import {size, fontSize, fonts} from 'theme';
-import {color} from 'theme';
+import {color, size, fontSize, fonts} from '../../theme';
 
 export const rippleBtn = disabled => ({
   borderRadius: size.moderateScale(10),

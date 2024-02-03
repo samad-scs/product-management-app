@@ -3,8 +3,8 @@ import {Keyboard, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useNavigation} from '@react-navigation/native';
-import {Text} from '../text/index';
-import {color} from '../../theme/index';
+import {Text} from '../text';
+import {IcBackArrow, IcHome, color, size} from '../../theme';
 import * as styles from './styles';
 export const Header = props => {
   const {
@@ -36,12 +36,12 @@ export const Header = props => {
             animated={false}
             rippleColor={color.lightWhite}
             style={styles.headerMainStyle()}
-            // icon={() => (
-            //   <IcMenu
-            //     height={size.moderateScale(24)}
-            //     width={size.moderateScale(24)}
-            //   />
-            // )}
+            icon={() => (
+              <IcHome
+                height={size.moderateScale(24)}
+                width={size.moderateScale(24)}
+              />
+            )}
             onPress={
               onMenuPress
                 ? onMenuPress
@@ -61,11 +61,11 @@ export const Header = props => {
                   ? onBackPress
                   : () => navigation.goBack(navigation.getState().key)
               }>
-              {/* <IcBackArrow
+              <IcBackArrow
                 height={backArrowHeight ?? size.moderateScale(20)}
                 width={backArrowWidth ?? size.moderateScale(20)}
                 fill={backArrowColor ?? color.black}
-              /> */}
+              />
             </TouchableOpacity>
           </View>
         )}

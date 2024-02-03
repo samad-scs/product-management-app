@@ -5,9 +5,15 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
+    "ipad": "npx react-native run-ios --simulator='iPad Pro (12.9-inch) (6th generation)'",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node ./bin/postInstall",
+    "clean": "rm -rf node_modules && rm -rf yarn.lock && cd ios && rm -rf Pods && rm -rf Podfile.lock && cd .. && cd android && rm -rf build && cd app && rm -rf build && cd .. && cd ..",
+    "generate_apk": "cd android && ./gradlew app:assembleRelease",
+    "pod_install": "cd ios && pod install && cd ..",
+    "lint": "eslint --fix \"app/**/*.{js,jsx}\"",
+    "format": "prettier --write \"app/**/*.{js,jsx}\""
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",

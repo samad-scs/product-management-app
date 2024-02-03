@@ -1,7 +1,7 @@
 import {Platform} from 'react-native';
 import {size, color, fontSize, fonts} from '../../theme/index';
 export const headerStyle = (bgColor, insets) => ({
-  backgroundColor: bgColor ?? color.lightWhite,
+  backgroundColor: bgColor ?? color.whiteSmoke,
   justifyContent: 'space-between',
   paddingRight: size.moderateScale(15),
   paddingLeft: Platform.isPad ? size.moderateScale(10) : size.moderateScale(0),

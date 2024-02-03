@@ -1,6 +1,7 @@
 export const lightTheme = {
   primary: 'rgba(18, 18, 18, 1)',
   white: 'rgba(255, 255, 255, 1)',
+  whiteSmoke: '#eee',
   secondary: 'rgba(255, 255,255, 1)',
   brightRed: 'rgba(287, 32, 48, 1)',
   darkGreen: 'rgba(53, 94, 59, 1)',
@@ -13,7 +14,6 @@ export const lightTheme = {
   customBlue: opacity => `rgba(0, 0, 255,${opacity ?? 1})`,
   customDarkGreen: opacity => `rgba(53, 94, 59,${opacity ?? 1})`,
   customGold: opacity => `rgba(236, 187, 69,${opacity ?? 1})`,
-  white: 'rgba(255,255,255,1)',
   gray1100: 'rgba(94, 94, 94, 1)',
   lightGreen: 'rgba(120, 188, 100, 1)',
   black: 'rgba(0,0,0,1)',
@@ -47,6 +47,8 @@ export const lightTheme = {
 
 export const darkTheme = {
   primary: 'rgba(287, 32, 48, 1))',
+  white: 'rgba(255, 255, 255, 1)',
+  whiteSmoke: 'rgba(252, 252, 252, 1)',
   secondary: 'rgba(18, 18, 18, 1)',
   brightRed: 'rgba(287, 32, 48, 1)',
   darkGreen: 'rgba(53, 94, 59, 1)',
