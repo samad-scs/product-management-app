@@ -1,0 +1,50 @@
+[
+  {
+    "product_id": "PRD1000001",
+    "name": "Chana Daal",
+    "price": 140,
+    "type": "kg",
+    "description": null,
+    "sales": 29
+  },
+  {
+    "product_id": "PRD1000002",
+    "name": "Coke",
+    "price": 55,
+    "type": "unit",
+    "sales": 200,
+    "description": "Canned Coke"
+  },
+  {
+    "product_id": "PRD1000003",
+    "name": "Sugar",
+    "price": 30,
+    "type": "kg",
+    "sales": 300,
+    "description": null
+  },
+  {
+    "product_id": "PRD1000004",
+    "name": "Namak",
+    "price": 13,
+    "sales": 400,
+    "type": "kg",
+    "description": null
+  },
+  {
+    "product_id": "PRD1000005",
+    "name": "Dahi",
+    "price": 70,
+    "sales": 50,
+    "type": "kg",
+    "description": null
+  },
+  {
+    "product_id": "PRD1000005",
+    "name": "Chash",
+    "price": 20,
+    "sales": 70,
+    "type": "litre",
+    "description": null
+  }
+]

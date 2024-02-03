@@ -3,12 +3,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import HomePage from '../../screens/homeScreen';
 import BillingScreen from '../../screens/billingScreen';
-import AddUpdateProduct from '../../screens/addUpdateProductScreen';
-import ProductsScreen from '../../screens/productsScreen';
 
 const Stack = createNativeStackNavigator();
 
-export const MainStackNavigation = () => {
+export const ProductStackNavigation = () => {
   // const [showSplashScreen, setHideSplashScreen] = useState(true);
 
   // useEffect(() => {
@@ -26,8 +24,6 @@ export const MainStackNavigation = () => {
         {/* <Stack.Screen name="demoScreen" component={DemoScreen} /> */}
         <Stack.Screen name="homePage" component={HomePage} />
         <Stack.Screen name="generateBill" component={BillingScreen} />
-        <Stack.Screen name="productsList" component={ProductsScreen} />
-        <Stack.Screen name="addProduct" component={AddUpdateProduct} />
       </Stack.Navigator>
     </NavigationContainer>
   );

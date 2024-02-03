@@ -33,8 +33,12 @@ import {QR} from './image/svgIcons/IcQR';
 import {Minus} from './image/svgIcons/IcMinus';
 import {Trash} from './image/svgIcons/IcTrash';
 import {Settings} from './image/svgIcons/IcSettings';
+import {Flame} from './image/svgIcons/IcFlame';
+import { ProductCart } from './image/svgIcons/IcProduct';
 
 export const IcInfo = props => <Info {...props} />;
+export const IcFlame = props => <Flame {...props} />;
+export const IcProductCart = props => <ProductCart {...props} />;
 export const IcEyeClose = props => <EyeClose {...props} />;
 export const IcEyeOpen = props => <EyeOpen {...props} />;
 export const IcForwardArrow = props => <ForwardArrow {...props} />;
