@@ -1,5 +1,6 @@
 export * from './Size';
 export * from './Colors';
+export * from './Images';
 export * from './FontSize';
 export * from './LottieIcon';
 export * from './Icons';
