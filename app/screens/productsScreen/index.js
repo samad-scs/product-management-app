@@ -13,7 +13,7 @@ export default function ProductsScreen() {
   const navigation = useNavigation();
 
   // ** States
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(productsData ?? []);
 
   return (
     <View style={styles.rootContainer}>

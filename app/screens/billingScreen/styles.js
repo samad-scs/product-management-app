@@ -5,6 +5,11 @@ export const rootContainer = {
   backgroundColor: color.white,
 };
 
+export const listHeaderComponentSection = {
+  // borderWidth: 3,
+  gap: size.moderateScale(20),
+};
+
 export const itemContainer = {
   flexGrow: 1,
   marginHorizontal: size.moderateScale(10),
@@ -13,9 +18,40 @@ export const itemContainer = {
   paddingTop: size.moderateScale(20),
 };
 
+export const itemsSelected = {
+  backgroundColor: color.white,
+  borderRadius: size.moderateScale(15),
+  // borderWidth: 2,
+  // borderStyle: 'dotted',
+  // borderColor: color.semiTransBlack,
+  paddingHorizontal: size.moderateScale(12),
+  paddingVertical: size.moderateScale(20),
+  shadowColor: '#171717ee',
+  shadowOffset: {width: size.moderateScale(-1), height: size.moderateScale(2)},
+  shadowOpacity: size.moderateScale(0.1),
+  shadowRadius: size.moderateScale(1),
+  elevation: size.moderateScale(5),
+  gap: size.moderateScale(10),
+};
+
+export const selectedItemsContainer = {
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  flexDirection: 'row',
+};
+
+export const selectedItemsNameText = {
+  fontFamily: fonts.openSansBold,
+  fontSize: fontSize.verySmall,
+  color: color.black,
+};
+
 export const noItemsSelected = {
   backgroundColor: color.white,
   borderRadius: size.moderateScale(15),
+  // borderWidth: 2,
+  // borderStyle: 'dotted',
+  // borderColor: color.semiTransBlack,
   paddingHorizontal: size.moderateScale(12),
   paddingVertical: size.moderateScale(20),
   shadowColor: '#171717ee',
@@ -30,4 +66,22 @@ export const noItemsSelected = {
 export const noItemsSelectedText = {
   fontFamily: fonts.openSansBold,
   fontSize: fontSize.verySmall,
+};
+
+export const searchInputContainerStyle = {
+  marginTop: size.moderateScale(10),
+  marginBottom: size.moderateScale(5),
+};
+
+export const searchInputStyle = {
+  borderRadius: size.moderateScale(30),
+};
+
+export const divider = {
+  height: size.moderateScale(1),
+  backgroundColor: color.gray100,
+};
+
+export const generateBillButtonContainer = {
+  marginTop: size.moderateScale(10),
 };

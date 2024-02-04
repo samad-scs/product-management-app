@@ -48,7 +48,7 @@ export const InputBox = props => {
       style={[
         Styles.rootContainer(),
         customStyle,
-        isFocused && styles.focused,
+        isFocused && {...styles.focused, ...customStyle},
       ]}>
       {iconPosition === 'left' && (
         <View
