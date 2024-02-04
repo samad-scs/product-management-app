@@ -46,7 +46,7 @@ export default function BillingScreen() {
     setDeleteOpen(true);
   };
 
-  const confirmDelete = index => {
+  const confirmDelete = () => {
     const updatedArray = selectedProducts?.filter(
       v => v.product_id !== selectedItem?.product_id,
     );

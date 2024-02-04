@@ -3,7 +3,7 @@ import ReactNativeModal from 'react-native-modal';
 
 import * as styles from './styles';
 import {IcMinus, IcPlus, color, size} from '../../../theme';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Button} from '../..';
 
 export default function EditBillingItemModal({
@@ -30,22 +30,40 @@ export default function EditBillingItemModal({
           <Text style={styles.modalProductNameText}>{product?.name}</Text>
         </View>
         {/* PRODUCT QUANTITY */}
-        <View style={styles.modalAmountContainer}>
-          <TouchableOpacity onPress={() => setQty(qty - 1)}>
-            <IcMinus
-              width={size.moderateScale(25)}
-              height={size.moderateScale(25)}
-            />
-          </TouchableOpacity>
-          <View>
-            <Text style={styles?.inputQtyAmountText}>{qty}</Text>
-          </View>
-          <TouchableOpacity onPress={() => setQty(qty + 1)}>
-            <IcPlus
-              width={size.moderateScale(25)}
-              height={size.moderateScale(25)}
-            />
-          </TouchableOpacity>
+        <View style={styles.modalAmountContainer(product?.type === 'unit')}>
+          {product?.type === 'unit' ? (
+            <>
+              <TouchableOpacity onPress={() => setQty(qty - 1)}>
+                <IcMinus
+                  width={size.moderateScale(25)}
+                  height={size.moderateScale(25)}
+                />
+              </TouchableOpacity>
+              <View>
+                <Text style={styles?.inputQtyAmountText}>{qty}</Text>
+              </View>
+              <TouchableOpacity onPress={() => setQty(qty + 1)}>
+                <IcPlus
+                  width={size.moderateScale(25)}
+                  height={size.moderateScale(25)}
+                />
+              </TouchableOpacity>
+            </>
+          ) : (
+            <>
+              <View>
+                <TextInput
+                  keyboardType="number-pad"
+                  value={qty?.toString() ?? '0'}
+                  onChangeText={setQty}
+                  style={styles?.inputQtyAmountText}
+                />
+              </View>
+              <View>
+                <Text style={styles?.inputQtyAmountText}>{product?.type}</Text>
+              </View>
+            </>
+          )}
         </View>
         {/* BUTTONS */}
         <View style={styles?.modalButtonsContainer}>

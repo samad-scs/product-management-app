@@ -31,12 +31,12 @@ export const inputQtyAmountText = {
   color: color.black,
 };
 
-export const modalAmountContainer = {
+export const modalAmountContainer = unit => ({
   width: '100%',
   flexDirection: 'row',
-  justifyContent: 'space-around',
+  justifyContent: unit ? 'space-around' : 'center',
   alignItems: 'center',
-};
+});
 
 export const modalButtonsContainer = {
   width: '100%',
