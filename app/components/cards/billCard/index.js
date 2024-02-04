@@ -14,9 +14,8 @@ export default function BillCard() {
   const navigation = useNavigation();
 
   // ** States
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [billingData, setBillingData] = useState([]);
-  console.log('billingData :', billingData);
 
   useEffect(() => {
     const sortProducts = setTimeout(() => {
@@ -45,7 +44,7 @@ export default function BillCard() {
         />
         <Text style={styles.recentBillingCardHeadingText}>Recent Billings</Text>
       </View>
-      {(isLoading ? [0, 1, 2] : billingData)?.map((item, index) => (
+      {(isLoading ? [0, 1] : billingData)?.map((item, index) => (
         <View key={index}>
           <View style={styles.recentBillingDetailContainer}>
             {isLoading ? (

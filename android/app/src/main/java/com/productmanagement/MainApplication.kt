@@ -1,4 +1,4 @@
-package com.productmanagement
+package com.shopkeep
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "productmanagement.app"
-               BlueprintName = "productmanagement"
-               ReferencedContainer = "container:productmanagement.xcodeproj">
+               BuildableName = "shopkeep.app"
+               BlueprintName = "shopkeep"
+               ReferencedContainer = "container:shopkeep.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "productmanagementTests.xctest"
-               BlueprintName = "productmanagementTests"
-               ReferencedContainer = "container:productmanagement.xcodeproj">
+               BuildableName = "shopkeepTests.xctest"
+               BlueprintName = "shopkeepTests"
+               ReferencedContainer = "container:shopkeep.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "productmanagement.app"
-            BlueprintName = "productmanagement"
-            ReferencedContainer = "container:productmanagement.xcodeproj">
+            BuildableName = "shopkeep.app"
+            BlueprintName = "shopkeep"
+            ReferencedContainer = "container:shopkeep.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "productmanagement.app"
-            BlueprintName = "productmanagement"
-            ReferencedContainer = "container:productmanagement.xcodeproj">
+            BuildableName = "shopkeep.app"
+            BlueprintName = "shopkeep"
+            ReferencedContainer = "container:shopkeep.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
