@@ -1,30 +1,26 @@
-import React, {useState} from 'react';
-import {Button, Header, Screen, Text} from '../../components';
-import {FlatList, ScrollView, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, TouchableOpacity, View} from 'react-native';
+import {Button, Header, Text} from '../../components';
 
-import products from '../../json/products.json';
-
-import * as styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 import GenerateBillProductCard from '../../components/cards/generateBillProductItem';
 import {InputBox} from '../../components/inputBox';
-import {
-  IcEdit,
-  IcMinus,
-  IcPlus,
-  IcSearch,
-  IcTrash,
-  color,
-  size,
-} from '../../theme';
 import ConfirmDeleteModal from '../../components/modals/confirmDelete';
 import EditBillingItemModal from '../../components/modals/editBillingItem';
-import {useNavigation} from '@react-navigation/native';
+import {IcEdit, IcSearch, IcTrash, color, size} from '../../theme';
+
+import {MMKVLoader} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVLoader().initialize();
+
+import * as styles from './styles';
 
 export default function BillingScreen() {
   // ** Hooks
   const navigation = useNavigation();
 
   // ** States
+  const [products, setProducts] = useState([]);
   const [filterText, setFilterText] = useState('');
   const [extra, setExtra] = useState(0);
   const [qty, setQty] = useState(1);
@@ -35,7 +31,7 @@ export default function BillingScreen() {
 
   const handleClick = item => {
     const updateSelectedItem = selectedProducts.filter(
-      v => v.product_id !== item?.product_id,
+      v => v.u_id !== item?.u_id,
     );
     setSelectedProducts([...updateSelectedItem, item]);
   };
@@ -53,7 +49,7 @@ export default function BillingScreen() {
 
   const confirmDelete = () => {
     const updatedArray = selectedProducts?.filter(
-      v => v.product_id !== selectedItem?.product_id,
+      v => v.u_id !== selectedItem?.u_id,
     );
     setSelectedProducts(updatedArray);
     setDeleteOpen(false);
@@ -88,6 +84,11 @@ export default function BillingScreen() {
     navigation.navigate('generatedBill', {data});
   };
 
+  useEffect(() => {
+    const productsData = MMKV.getArray('products');
+    setProducts(productsData ?? []);
+  }, []);
+
   return (
     <View style={styles.rootContainer}>
       <Header
@@ -108,10 +109,8 @@ export default function BillingScreen() {
                   </Text>
                 </View>
                 {selectedProducts?.map((item, index) => (
-                  <>
-                    <View
-                      key={item?.product_id}
-                      style={styles?.selectedItemsContainer}>
+                  <View key={item?.u_id} style={{gap: size.moderateScale(10)}}>
+                    <View style={styles?.selectedItemsContainer}>
                       <Text style={styles.selectedItemsNameText}>
                         {item.name}
                       </Text>
@@ -141,7 +140,7 @@ export default function BillingScreen() {
                     {index !== selectedProducts?.length - 1 && (
                       <View style={styles?.divider} />
                     )}
-                  </>
+                  </View>
                 ))}
               </View>
             ) : (
@@ -180,7 +179,7 @@ export default function BillingScreen() {
         data={products?.filter(
           v =>
             v.name?.includes(filterText) &&
-            selectedProducts?.every(i => i.product_id !== v.product_id),
+            selectedProducts?.every(i => i.u_id !== v.u_id),
         )}
         ListEmptyComponent={
           <View style={styles?.noItemsSelected}>
@@ -192,7 +191,7 @@ export default function BillingScreen() {
         renderItem={({item}) => (
           <GenerateBillProductCard product={item} handleClick={handleClick} />
         )}
-        keyExtractor={item => item.product_id}
+        keyExtractor={item => item?.u_id?.toString()}
       />
       <ConfirmDeleteModal
         isVisible={deleteOpen}

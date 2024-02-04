@@ -1,13 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
-import bills from '../../../json/bills.json';
 
-import {useNavigation} from '@react-navigation/native';
-import {IcBills, color, size} from '../../../theme';
-import {currencyConvert} from '../../../utils/functions/currencyConverter';
-import * as styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
+import { IcBills, color, size } from '../../../theme';
+import { currencyConvert } from '../../../utils/functions/currencyConverter';
+
+// ** Storage Instance
+import { MMKVLoader } from 'react-native-mmkv-storage';
+
+// ** Styles
+import * as styles from './styles';
+
+const MMKV = new MMKVLoader().initialize();
 
 export default function BillCard() {
   // ** Hooks
@@ -19,14 +25,14 @@ export default function BillCard() {
 
   useEffect(() => {
     const sortProducts = setTimeout(() => {
-      const newProducts = [...bills];
+      const newProducts = MMKV.getArray('bills') ?? [];
       newProducts.sort((a, b) => {
         const startA = a.created_at;
         const startB = b.created_at;
         return startB - startA;
       });
       const topThreeProducts = newProducts.slice(0, 2);
-      setBillingData(topThreeProducts);
+      setBillingData(topThreeProducts ?? []);
       setIsLoading(false);
       return () => {
         clearTimeout(sortProducts);

@@ -11,8 +11,7 @@ import BillCard from '../../components/cards/billCard';
 
 export default function HomePage() {
   const navigation = useNavigation();
-
-  console.log(new Date());
+ 
 
   return (
     <View style={styles.rootContainer}>

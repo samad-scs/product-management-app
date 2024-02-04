@@ -10,6 +10,12 @@ import * as styles from './styles';
 import {color} from '../../theme';
 import {useNavigation} from '@react-navigation/native';
 
+import {MMKVLoader} from 'react-native-mmkv-storage';
+import {generateNewID} from '../../utils/functions/generateNewId';
+import Toast from 'react-native-toast-message';
+
+const MMKV = new MMKVLoader().initialize();
+
 export default function AddUpdateProduct() {
   const radioButtons = useMemo(
     () => [
@@ -70,7 +76,7 @@ export default function AddUpdateProduct() {
   };
 
   // ** Submit
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let error = false;
     if (productNameError || !productName || productName === '') {
       setProductNameError(true);
@@ -95,8 +101,29 @@ export default function AddUpdateProduct() {
       description: productDescription,
       type: radioButtons?.find(val => val.id === selectedId)?.value,
       sales: 0,
+      created_at: new Date(),
     };
-    console.log('DATA ====> ', data);
+
+    MMKV.getArray('products', (error, result) => {
+      try {
+        if (error) {
+          console.error('ERROR ADD PRODUCT MMKV', error);
+          return;
+        }
+
+        const newProductId = generateNewID(result, 'PRD');
+        data.u_id = newProductId;
+
+        const newProducts = result ? [...result, data] : [data];
+
+        MMKV.setArray('products', newProducts);
+
+        Toast.show({text1: 'Product Added Successfully', type: 'success'});
+        navigation.navigate('productsList');
+      } catch (err) {
+        console.error('MMKV ADD ERROR', err);
+      }
+    });
   };
 
   return (

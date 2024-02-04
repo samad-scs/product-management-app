@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as styles from './styles';
 import {Header, Screen, Text} from '../../components';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
@@ -7,6 +7,9 @@ import ProductItemCard from '../../components/cards/productItemCard';
 
 import productsData from '../../json/products.json';
 import {useNavigation} from '@react-navigation/native';
+import {MMKVLoader} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVLoader().initialize();
 
 export default function ProductsScreen() {
   // ** Hooks
@@ -14,6 +17,16 @@ export default function ProductsScreen() {
 
   // ** States
   const [products, setProducts] = useState(productsData ?? []);
+
+  useEffect(() => {
+    MMKV.getArray('products', (error, result) => {
+      if (error) {
+        console.error('ERROR--->', error);
+        return;
+      }
+      setProducts(result ?? []);
+    });
+  }, [MMKV]);
 
   return (
     <View style={styles.rootContainer}>

@@ -7,6 +7,9 @@ import {IcFlame, color, size} from '../../../theme';
 import * as styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {currencyConvert} from '../../../utils/functions/currencyConverter';
+import {MMKVLoader} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVLoader().initialize();
 
 export default function ProductCard() {
   // ** Hooks
@@ -18,10 +21,10 @@ export default function ProductCard() {
 
   useEffect(() => {
     const sortProducts = setTimeout(() => {
-      const newProducts = [...products];
+      const newProducts = MMKV.getArray('products') ?? [];
       newProducts.sort((a, b) => b.sales - a.sales);
       const topThreeProducts = newProducts.slice(0, 3);
-      setProductsData(topThreeProducts);
+      setProductsData(topThreeProducts ?? []);
       setIsLoading(false);
       return () => {
         clearTimeout(sortProducts);
