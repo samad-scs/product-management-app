@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as styles from './styles';
 import {Header, Screen, Text} from '../../components';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import {IcPlus, size} from '../../theme';
 import ProductItemCard from '../../components/cards/productItemCard';
 
-import products from '../../json/products.json';
+import productsData from '../../json/products.json';
 import {useNavigation} from '@react-navigation/native';
 
 export default function ProductsScreen() {
+  // ** Hooks
   const navigation = useNavigation();
+
+  // ** States
+  const [products, setProducts] = useState([]);
 
   return (
     <View style={styles.rootContainer}>
@@ -31,9 +35,21 @@ export default function ProductsScreen() {
       />
       <ScrollView contentContainerStyle={styles.itemContainer}>
         <View style={styles.listItemsContainer}>
-          {products?.map((item, index) => (
-            <ProductItemCard key={index} product={item} />
-          ))}
+          {products && products?.length !== 0 ? (
+            products?.map((item, index) => (
+              <ProductItemCard key={index} product={item} />
+            ))
+          ) : (
+            <View style={styles.noProductsContainer}>
+              <Text style={styles?.noProductsText}>No Products Found</Text>
+              <TouchableOpacity
+                style={styles.addNowButton}
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('addProduct')}>
+                <Text style={styles?.addNowButtonText}>Add Now</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>

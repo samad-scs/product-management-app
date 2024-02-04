@@ -1,10 +1,104 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {ScrollView, Text, TextInput, View} from 'react-native';
+
+import {Button, Header, Screen} from '../../components';
+import {InputBox} from '../../components/inputBox';
+
+import RadioGroup from 'react-native-radio-buttons-group';
 
 import * as styles from './styles';
-import {Header, Screen} from '../../components';
+import {color} from '../../theme';
+import {useNavigation} from '@react-navigation/native';
 
 export default function AddUpdateProduct() {
+  const radioButtons = useMemo(
+    () => [
+      {
+        id: '1', // acts as primary key, should be unique and non-empty string
+        label: 'Kilogram',
+        value: 'kg',
+      },
+      {
+        id: '2',
+        label: 'Unit',
+        value: 'unit',
+      },
+      {
+        id: '3',
+        label: 'Litre',
+        value: 'ltr',
+      },
+    ],
+    [],
+  );
+
+  // ** Hooks
+  const navigation = useNavigation();
+
+  // ** States
+  const [selectedId, setSelectedId] = useState();
+  const [productTypeError, setProductTypeError] = useState(false);
+  const [productName, setProductName] = useState('');
+  const [productNameError, setProductNameError] = useState(false);
+  const [productDescription, setProductDescription] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const [productPriceError, setProductPriceError] = useState(false);
+
+  // ** Product Name Change
+  const handleProductNameChange = e => {
+    setProductName(e);
+    if (e !== '') {
+      setProductNameError(false);
+    } else {
+      setProductNameError(true);
+    }
+  };
+
+  // ** Product Price Change
+  const handleProductPriceChange = e => {
+    setProductPrice(e);
+    if (e !== '') {
+      setProductPriceError(false);
+    } else {
+      setProductPriceError(true);
+    }
+  };
+
+  // ** Close
+  const handleClose = () => {
+    navigation.navigate('productsList');
+  };
+
+  // ** Submit
+  const handleSubmit = () => {
+    let error = false;
+    if (productNameError || !productName || productName === '') {
+      setProductNameError(true);
+      error = true;
+    }
+
+    if (productPriceError || !productPrice || productPrice === '') {
+      setProductPriceError(true);
+      error = true;
+    }
+
+    if (!selectedId) {
+      setProductTypeError(true);
+      error = true;
+    }
+
+    if (error) return;
+
+    const data = {
+      name: productName,
+      price: productPrice,
+      description: productDescription,
+      type: radioButtons?.find(val => val.id === selectedId)?.value,
+      sales: 0,
+    };
+    console.log('DATA ====> ', data);
+  };
+
   return (
     <View style={styles?.rootContainer}>
       <Header
@@ -13,9 +107,82 @@ export default function AddUpdateProduct() {
           headerLeftText: 'Add Product',
         }}
       />
-      <Screen style={styles?.itemContainer}>
-        <Text>Product Add</Text>
-      </Screen>
+      <ScrollView contentContainerStyle={styles?.itemContainer}>
+        <View style={styles?.formCardContainer}>
+          {/* PRODUCT NAME */}
+          <View style={styles?.inputBoxContainer}>
+            <Text style={styles?.inputLabelText}>Name of the product : </Text>
+            <View>
+              <InputBox
+                value={productName}
+                onChangeText={handleProductNameChange}
+              />
+              {productNameError && (
+                <Text style={styles.errorMessage}>
+                  Please enter a product name
+                </Text>
+              )}
+            </View>
+          </View>
+          {/* PRODUCT DESCRIPTION */}
+          <View style={styles?.inputBoxContainer}>
+            <Text
+              style={
+                styles?.inputLabelText
+              }>{`Description (optional) : `}</Text>
+            <View>
+              <InputBox
+                value={productDescription}
+                onChangeText={setProductDescription}
+              />
+            </View>
+          </View>
+          {/* PRODUCT PRICE */}
+          <View style={styles?.inputBoxContainer}>
+            <Text style={styles?.inputLabelText}>{`Price ( in ₹ ): `}</Text>
+            <View>
+              <InputBox
+                keyboardType="number-pad"
+                value={productPrice}
+                onChangeText={handleProductPriceChange}
+              />
+              {productPriceError && (
+                <Text style={styles.errorMessage}>Please enter a amount</Text>
+              )}
+            </View>
+          </View>
+          {/* PRODUCT TYPE */}
+          <View style={styles?.inputBoxContainer}>
+            <Text style={styles?.inputLabelText}>Scale : </Text>
+
+            <RadioGroup
+              containerStyle={styles?.radioGroupContainer}
+              radioButtons={radioButtons}
+              onPress={e => {
+                setSelectedId(e);
+                setProductTypeError(false);
+              }}
+              selectedId={selectedId}
+            />
+            {productTypeError && (
+              <Text style={styles.errorMessage}>
+                Please select a type on which the price depends
+              </Text>
+            )}
+          </View>
+          {/* ACTIONS */}
+          <View style={styles?.submitBoxContainer}>
+            <Button title={'Submit'} onPress={handleSubmit} />
+            <Button
+              activeOpacity={0.2}
+              title={'Close'}
+              btnStyle={styles?.closeBtn}
+              onPress={handleClose}
+              customTextColor={color.black}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
