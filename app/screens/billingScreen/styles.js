@@ -40,10 +40,29 @@ export const selectedItemsContainer = {
   flexDirection: 'row',
 };
 
+export const editableItemsContainer = {
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  flexDirection: 'row',
+  gap: size.moderateScale(10),
+};
+
 export const selectedItemsNameText = {
   fontFamily: fonts.openSansBold,
   fontSize: fontSize.verySmall,
   color: color.black,
+};
+
+export const selectedItemsTitleContainer = {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginVertical: size.moderateScale(4),
+};
+
+export const selectedItemsTitleText = {
+  fontFamily: fonts.openSansBold,
+  fontSize: fontSize.verySmall,
+  color: color.semiTransBlack,
 };
 
 export const noItemsSelected = {

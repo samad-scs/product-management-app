@@ -7,14 +7,65 @@ import products from '../../json/products.json';
 import * as styles from './styles';
 import GenerateBillProductCard from '../../components/cards/generateBillProductItem';
 import {InputBox} from '../../components/inputBox';
-import {IcSearch, color, size} from '../../theme';
+import {
+  IcEdit,
+  IcMinus,
+  IcPlus,
+  IcSearch,
+  IcTrash,
+  color,
+  size,
+} from '../../theme';
+import ConfirmDeleteModal from '../../components/modals/confirmDelete';
+import EditBillingItemModal from '../../components/modals/editBillingItem';
 
 export default function BillingScreen() {
   const [filterText, setFilterText] = useState('');
+  const [extra, setExtra] = useState(0);
+  const [qty, setQty] = useState(1);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const handleClick = item => {
-    setSelectedProducts([...selectedProducts, item]);
+    const updateSelectedItem = selectedProducts.filter(
+      v => v.product_id !== item?.product_id,
+    );
+    setSelectedProducts([...updateSelectedItem, item]);
+  };
+
+  const handleEdit = index => {
+    setSelectedItem(selectedProducts[index]);
+    setQty(selectedProducts[index].qty);
+    setOpenMenu(true);
+  };
+
+  const handleDelete = index => {
+    setSelectedItem(selectedProducts[index]);
+    setDeleteOpen(true);
+  };
+
+  const confirmDelete = index => {
+    const updatedArray = selectedProducts?.filter(
+      v => v.product_id !== selectedItem?.product_id,
+    );
+    setSelectedProducts(updatedArray);
+    setDeleteOpen(false);
+    setExtra(extra + 1);
+  };
+
+  const handleClose = () => {
+    // handleClick(product);
+    setOpenMenu(false);
+  };
+
+  const handleAddToSelection = () => {
+    const data = {...selectedItem};
+    data.qty = qty;
+
+    handleClick(data);
+    setOpenMenu(false);
   };
 
   return (
@@ -31,16 +82,39 @@ export default function BillingScreen() {
           <View style={styles.listHeaderComponentSection}>
             {selectedProducts && selectedProducts?.length !== 0 ? (
               <View style={styles.itemsSelected}>
+                <View style={styles.selectedItemsTitleContainer}>
+                  <Text style={styles.selectedItemsTitleText}>
+                    Selected Items
+                  </Text>
+                </View>
                 {selectedProducts?.map((item, index) => (
                   <>
                     <View key={index} style={styles?.selectedItemsContainer}>
                       <Text style={styles.selectedItemsNameText}>
                         {item.name}
                       </Text>
-                      <Text
-                        style={
-                          styles.selectedItemsNameText
-                        }>{`x ${item.qty}`}</Text>
+                      <View style={styles.editableItemsContainer}>
+                        <Text
+                          style={
+                            styles.selectedItemsNameText
+                          }>{`x ${item.qty}`}</Text>
+                        <TouchableOpacity
+                          activeOpacity={0.3}
+                          onPress={() => handleEdit(index)}>
+                          <IcEdit
+                            width={size.moderateScale(13)}
+                            height={size.moderateScale(13)}
+                          />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          activeOpacity={0.3}
+                          onPress={() => handleDelete(index)}>
+                          <IcTrash
+                            width={size.moderateScale(13)}
+                            height={size.moderateScale(13)}
+                          />
+                        </TouchableOpacity>
+                      </View>
                     </View>
                     {index !== selectedProducts?.length - 1 && (
                       <View style={styles?.divider} />
@@ -89,6 +163,20 @@ export default function BillingScreen() {
           <GenerateBillProductCard product={item} handleClick={handleClick} />
         )}
         keyExtractor={item => item.product_id}
+      />
+      <ConfirmDeleteModal
+        isVisible={deleteOpen}
+        title={`This will remove "${selectedItem?.name}" from your selected items`}
+        onClose={() => setDeleteOpen(false)}
+        onConfirm={confirmDelete}
+      />
+      <EditBillingItemModal
+        openMenu={openMenu}
+        handleAddToSelection={handleAddToSelection}
+        handleClose={handleClose}
+        setQty={setQty}
+        qty={qty}
+        product={selectedItem}
       />
     </View>
   );
