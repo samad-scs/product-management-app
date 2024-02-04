@@ -22,6 +22,7 @@ export default function EditBillingItemModal({
       style={styles.modalStyles}
       animationIn={'slideInUp'}
       animationOut={'slideOutDown'}
+      animationOutTiming={0.4}
       backdropTransitionOutTiming={0.3}
       backdropOpacity={0.5}>
       <View style={styles.modalContainer}>

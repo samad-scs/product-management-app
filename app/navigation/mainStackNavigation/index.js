@@ -7,6 +7,7 @@ import AddUpdateProduct from '../../screens/addUpdateProductScreen';
 import ProductsScreen from '../../screens/productsScreen';
 import RecentBillings from '../../screens/recentBillings';
 import { SplashScreen } from '../../screens/splashScreen';
+import GeneratedBillScreen from '../../screens/generatedBillScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export const MainStackNavigation = () => {
         ) : null}
         <Stack.Screen name="homePage" component={HomePage} />
         <Stack.Screen name="generateBill" component={BillingScreen} />
+        <Stack.Screen name="generatedBill" component={GeneratedBillScreen} />
         <Stack.Screen name="recentBillings" component={RecentBillings} />
         <Stack.Screen name="productsList" component={ProductsScreen} />
         <Stack.Screen name="addProduct" component={AddUpdateProduct} />

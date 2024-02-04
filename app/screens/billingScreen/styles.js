@@ -85,6 +85,7 @@ export const noItemsSelected = {
 export const noItemsSelectedText = {
   fontFamily: fonts.openSansBold,
   fontSize: fontSize.verySmall,
+  color: color.semiTransBlack,
 };
 
 export const searchInputContainerStyle = {

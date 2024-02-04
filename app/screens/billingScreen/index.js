@@ -18,8 +18,13 @@ import {
 } from '../../theme';
 import ConfirmDeleteModal from '../../components/modals/confirmDelete';
 import EditBillingItemModal from '../../components/modals/editBillingItem';
+import {useNavigation} from '@react-navigation/native';
 
 export default function BillingScreen() {
+  // ** Hooks
+  const navigation = useNavigation();
+
+  // ** States
   const [filterText, setFilterText] = useState('');
   const [extra, setExtra] = useState(0);
   const [qty, setQty] = useState(1);
@@ -68,6 +73,21 @@ export default function BillingScreen() {
     setOpenMenu(false);
   };
 
+  const handleGenerate = () => {
+    let totalPrice = 0;
+    selectedProducts?.map(item => {
+      const sumAmount = +item.price * +item.qty;
+      totalPrice += sumAmount;
+    });
+
+    const data = {
+      items: selectedProducts,
+      totalAmount: totalPrice,
+    };
+
+    navigation.navigate('generatedBill', {data});
+  };
+
   return (
     <View style={styles.rootContainer}>
       <Header
@@ -89,7 +109,9 @@ export default function BillingScreen() {
                 </View>
                 {selectedProducts?.map((item, index) => (
                   <>
-                    <View key={index} style={styles?.selectedItemsContainer}>
+                    <View
+                      key={item?.product_id}
+                      style={styles?.selectedItemsContainer}>
                       <Text style={styles.selectedItemsNameText}>
                         {item.name}
                       </Text>
@@ -133,6 +155,7 @@ export default function BillingScreen() {
               <Button
                 title={'Generate'}
                 disabled={!selectedProducts || selectedProducts?.length === 0}
+                onPress={handleGenerate}
               />
             </View>
             <View style={styles.searchInputContainerStyle}>
@@ -159,6 +182,13 @@ export default function BillingScreen() {
             v.name?.includes(filterText) &&
             selectedProducts?.every(i => i.product_id !== v.product_id),
         )}
+        ListEmptyComponent={
+          <View style={styles?.noItemsSelected}>
+            <Text style={styles?.noItemsSelectedText}>
+              No Products Available
+            </Text>
+          </View>
+        }
         renderItem={({item}) => (
           <GenerateBillProductCard product={item} handleClick={handleClick} />
         )}
