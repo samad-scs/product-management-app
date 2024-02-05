@@ -2,7 +2,7 @@ import {color, size, fontSize, fonts} from '../../theme';
 
 export const rippleBtn = disabled => ({
   borderRadius: size.moderateScale(10),
-  backgroundColor: disabled ? color.customSecondary(0.3) : color.brightRed,
+  backgroundColor: disabled ? color.customSecondary(0.3) : color.black,
   paddingVertical: size.moderateScale(12),
   paddingHorizontal: size.moderateScale(10),
 });
@@ -22,7 +22,7 @@ export const iconContainer = () => ({
 });
 export const labelStyle = (textColor, textCapitalize) => ({
   color: textColor ?? color.white,
-  fontFamily: fonts.poppinsSemiBold,
+  fontFamily: fonts.openSansSemiBold,
   fontSize: fontSize.verySmall,
   includeFontPadding: false,
   textAlign: 'center',

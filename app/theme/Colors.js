@@ -47,7 +47,6 @@ export const lightTheme = {
 
 export const darkTheme = {
   primary: 'rgba(287, 32, 48, 1))',
-  white: 'rgba(255, 255, 255, 1)',
   whiteSmoke: 'rgba(252, 252, 252, 1)',
   secondary: 'rgba(18, 18, 18, 1)',
   brightRed: 'rgba(287, 32, 48, 1)',
