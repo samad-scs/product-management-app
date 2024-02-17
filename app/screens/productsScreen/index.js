@@ -18,7 +18,7 @@ export default function ProductsScreen() {
   // ** States
   const [products, setProducts] = useState(productsData ?? []);
 
-  useEffect(() => {
+  const fetchData = () => {
     MMKV.getArray('products', (error, result) => {
       if (error) {
         console.error('ERROR--->', error);
@@ -26,7 +26,15 @@ export default function ProductsScreen() {
       }
       setProducts(result ?? []);
     });
-  }, [MMKV]);
+  };
+
+  useEffect(() => {
+    const statsListFunction = navigation.addListener('focus', () => {
+      fetchData();
+    });
+
+    return statsListFunction;
+  }, [navigation]);
 
   return (
     <View style={styles.rootContainer}>

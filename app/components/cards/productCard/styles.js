@@ -56,7 +56,7 @@ export const divider = {
 };
 
 export const noProductsContainer = {
-  height: '83%',
+  height: '50%',
   borderWidth: 0,
   borderRadius: size.moderateScale(15),
   justifyContent: 'center',

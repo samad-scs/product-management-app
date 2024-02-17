@@ -15,7 +15,7 @@ export default function GenerateBillButton() {
   return (
     <View>
       <TouchableOpacity
-        activeOpacity={0.9}
+        activeOpacity={0.7}
         onPress={handleGenerate}
         style={styles.generateBillCard}>
         <View style={styles?.generateBillCardContent}>

@@ -12,6 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import {MMKVLoader} from 'react-native-mmkv-storage';
 import {generateNewID} from '../../utils/functions/generateNewId';
+import moment from 'moment';
 
 const MMKV = new MMKVLoader().initialize();
 
@@ -87,7 +88,10 @@ export default function GeneratedBillScreen({route}) {
   };
 
   const onSuccess = method => {
+    const storeName = 'Prayosha';
+
     const billingData = {
+      invoice_number: `${moment().unix()}_${storeName}`,
       items: data?.items?.map(item => ({
         u_id: item?.u_id,
         qty: item?.qty,
